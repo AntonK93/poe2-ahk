@@ -21,7 +21,7 @@ CheckHp:
        if (!ShieldRechargeCooldown) {
             SetTimer, ResetShieldRechargeCooldown, -16000
             ShieldRechargeCooldown := true
-            Send, z
+            Send, {sc02C}
        }
        Send, q
     }
@@ -35,12 +35,14 @@ return
     SetTimer, ResetSpellAttackCooldown, -8000
 
     Sleep, 500 ; my spell rotation starts
-    Send, r
+    Send, {sc013}
     Sleep, 500
-    Send, f
+    Send, {sc013}
     Send, 2
     Sleep, 1050
-    Send, x
+    Send, {sc02D}
+    Sleep, 500
+    Click, right
 return
 
 ~XButton2:: ; mouse 5 click
@@ -51,12 +53,14 @@ return
     SetTimer, ResetSpellAttackCooldown, -8000
 
     Sleep, 500 ; my spell rotation starts
-    Send, r
+    Send, {sc013}
     Sleep, 500
-    Send, f
+    Send, {sc013}
     Send, 2
     Sleep, 1050
-    Send, x
+    Send, {sc02D}
+    Sleep, 500
+    Click, right
 return
 
 ResetSpellAttackCooldown:
