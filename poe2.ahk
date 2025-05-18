@@ -1,22 +1,22 @@
 ﻿global SpellAttackCooldown := false
-global ShieldRechargeCooldown := false
+global ShieldRechargeCooldown := false ; convalescence cooldown so cast it when on low
 
-shieldColor := 0x479954
-noShieldColor := 0x1C892B
+noShieldColor := 0x1C892B ; hardcoded colors xD both of them means that shield is on low
 noShieldColor2 := 0x1D892A
 
-SetTimer, CheckHp, 700  ; Проверяем хп каждые 800 миллисекунд
+PixelX := 994 ; pixel pos x to track (1920x1080 resolution)
+PixelY := 360 ; pixel pos y to track (1920x1080 resolution)
+
+SetTimer, CheckHp, 700  ; loop every 700 miliseconds to check player hp
 
 CheckHp:
     WinGetActiveTitle, activeWindowTitle
-    if (!InStr(activeWindowTitle, "Path of Exile 2")) {
+    if (!InStr(activeWindowTitle, "Path of Exile 2")) { ; if outside of poe do nothing
        return
     }
 
-    ; Получаем текущий цвет пикселя
-    PixelGetColor, color, 994, 360, RGB
+    PixelGetColor, color, PixelX, PixelY, RGB ;
 
-    ; Если цвет изменился, выполняем действие
     if (color = noShieldColor || color = noShieldColor2) {
        if (!ShieldRechargeCooldown) {
             SetTimer, ResetShieldRechargeCooldown, -16000
@@ -27,14 +27,14 @@ CheckHp:
     }
 return
 
-~XButton1::
+~XButton1:: ; mouse 4 click
     if (SpellAttackCooldown) {
         return
     }
     SpellAttackCooldown := true
     SetTimer, ResetSpellAttackCooldown, -8000
 
-    Sleep, 500
+    Sleep, 500 ; my spell rotation starts
     Send, r
     Sleep, 500
     Send, f
@@ -43,14 +43,14 @@ return
     Send, x
 return
 
-~XButton2::
+~XButton2:: ; mouse 5 click
     if (SpellAttackCooldown) {
         return
     }
     SpellAttackCooldown := true
     SetTimer, ResetSpellAttackCooldown, -8000
 
-    Sleep, 500
+    Sleep, 500 ; my spell rotation starts
     Send, r
     Sleep, 500
     Send, f
