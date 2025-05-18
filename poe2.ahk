@@ -37,7 +37,7 @@ return
     Sleep, 500 ; my spell rotation starts
     Send, {sc013}
     Sleep, 500
-    Send, {sc013}
+    Send, {sc021}
     Send, 2
     Sleep, 1050
     Send, {sc02D}
@@ -55,7 +55,7 @@ return
     Sleep, 500 ; my spell rotation starts
     Send, {sc013}
     Sleep, 500
-    Send, {sc013}
+    Send, {sc021}
     Send, 2
     Sleep, 1050
     Send, {sc02D}
