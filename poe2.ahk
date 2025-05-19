@@ -1,13 +1,12 @@
 ﻿global SpellAttackCooldown := false
 global ShieldRechargeCooldown := false ; convalescence cooldown so cast it when on low
 
-noShieldColor := 0x1C892B ; hardcoded colors xD both of them means that shield is on low
-noShieldColor2 := 0x1D892A
+noShieldColorThresholdDigit := "7" ; color is not constant so should be enough to validate first digit of that
 
-PixelX := 994 ; pixel pos x to track (1920x1080 resolution)
-PixelY := 360 ; pixel pos y to track (1920x1080 resolution)
+PixelX := 171 ; pixel shield pos x to track (1920x1080 resolution)
+PixelY := 886 ; pixel shield pos y to track (1920x1080 resolution)
 
-SetTimer, CheckHp, 700  ; loop every 700 miliseconds to check player hp
+SetTimer, CheckHp, 700  ; loop every 700 miliseconds to check player shield
 
 CheckHp:
     WinGetActiveTitle, activeWindowTitle
@@ -16,8 +15,9 @@ CheckHp:
     }
 
     PixelGetColor, color, PixelX, PixelY, RGB ;
+    firstColorDigit := SubStr(color, 3, 1)
 
-    if (color = noShieldColor || color = noShieldColor2) {
+    if (firstColorDigit < noShieldColorThresholdDigit) {
        if (!ShieldRechargeCooldown) {
             SetTimer, ResetShieldRechargeCooldown, -16000
             ShieldRechargeCooldown := true
