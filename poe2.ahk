@@ -23,7 +23,7 @@ CheckHp:
             ShieldRechargeCooldown := true
             Send, {sc02C}
        }
-       Send, q
+       Send, {sc010}
     }
 return
 
@@ -36,13 +36,10 @@ return
 
     Sleep, 500 ; my spell rotation starts
     Send, {sc013}
-    Sleep, 500
+    Sleep, 600
     Send, {sc021}
-    Send, 2
-    Sleep, 1050
-    Send, {sc02D}
-    Sleep, 500
-    Click, right
+    Sleep, 1000
+    Send, {Ctrl}
 return
 
 ~XButton2:: ; mouse 5 click
@@ -54,13 +51,10 @@ return
 
     Sleep, 500 ; my spell rotation starts
     Send, {sc013}
-    Sleep, 500
+    Sleep, 600
     Send, {sc021}
-    Send, 2
-    Sleep, 1050
-    Send, {sc02D}
-    Sleep, 500
-    Click, right
+    Sleep, 1000
+    Send, {Ctrl}
 return
 
 ResetSpellAttackCooldown:
